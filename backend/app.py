@@ -1,12 +1,8 @@
 from flask import Flask, jsonify
 from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from modules.models import Users
+from database_settings import db, init_db
 import os
-
-# DBの初期化
-db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
@@ -18,15 +14,9 @@ def create_app():
     if DATABASE_URL.startswith("postgres://"):
         DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-    
-    # DB設定
-    db.init_app(app)
-    migrate = Migrate(app, db)
-    with app.app_context():
-        db.create_all()
-        db.session.commit()
-        db.session.close()
-        print('DB initialized')
+
+    # DB初期化
+    init_db(app)
 
     # セッション管理設定
     login_manager = LoginManager()

@@ -1,4 +1,4 @@
-from app import db
+from database_settings import db
 from flask_login import UserMixin
 
 # ユーザー情報クラスを作成

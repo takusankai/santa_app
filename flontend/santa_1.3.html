@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>チャットアプリ</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    #chat-box {
+        width: 400px; /* チャットボックスを広くする */
+        margin: 20px auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-y: scroll;
+        height: 300px;
+    }
+    .message {
+        margin-bottom: 10px;
+    }
+    .message-sender {
+        font-weight: bold;
+    }
+    .message-you {
+        text-align: right;
+    }
+    .message-recipient {
+        text-align: left;
+    }
+    .message-content {
+        background-color: #f2f2f2;
+        padding: 8px 12px;
+        border-radius: 10px;
+        display: inline-block;
+        max-width: 70%; /* メッセージの幅を調整 */
+    }
+    #message-input {
+        width: 70%; /* テキストボックスの幅を調整 */
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #send-button {
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #switch-user-button {
+        padding: 5px 10px;
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div id="chat-box">
+    <div id="messages"></div>
+</div>
+
+<div>
+    <input type="text" id="message-input" placeholder="メッセージを入力">
+    <button id="send-button">送信</button>
+    <button id="switch-user-button">ユーザー切り替え</button>
+    <input type="file" id="file-input">
+    <button id="add-file-button">追加</button>
+</div>
+
+<script>
+    const messagesDiv = document.getElementById('messages');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const fileInput = document.getElementById('file-input');
+    const addFileButton = document.getElementById('add-file-button');
+    const switchUserButton = document.getElementById('switch-user-button');
+
+    let currentUser = 'You';
+
+    sendButton.addEventListener('click', sendMessage);
+    addFileButton.addEventListener('click', addFile);
+    switchUserButton.addEventListener('click', switchUser);
+
+    function sendMessage() {
+        const message = messageInput.value.trim();
+        if (message !== '') {
+            appendMessage(currentUser, message);
+            messageInput.value = '';
+        }
+    }
+
+    function addFile() {
+        fileInput.click();
+    }
+
+    fileInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const fileContent = event.target.result;
+                appendMessage(currentUser, `<a href="${fileContent}" target="_blank">${file.name}</a>`);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function appendMessage(sender, message) {
+        const messageDiv = document.createElement('div');
+        const senderClass = sender === 'You' ? 'message-you' : 'message-recipient';
+        messageDiv.classList.add('message', senderClass);
+        const senderText = sender === 'You' ? 'You' : 'Recipient';
+        messageDiv.innerHTML = `<span class="message-sender">${senderText}</span>: <span class="message-content">${message}</span>`;
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function switchUser() {
+        currentUser = currentUser === 'You' ? 'Recipient' : 'You';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+/* CSSスタイル */
+
+/* 全体のページのスタイル */
+body {
+    font-family: Arial, sans-serif; /* フォントファミリーの指定 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* 横方向中央揃え */
+    align-items: center; /* 縦方向中央揃え */
+    height: 100vh; /* 画面全体の高さを100%に設定 */
+    background-color: #f0f0f0; /* 背景色 */
+}
+
+/* フォームのコンテナ */
+.container {
+    width: 350px; /* コンテナの幅を指定 */
+}
+
+/* サインアップフォームのスタイル */
+.form {
+    background-color: #fff; /* フォームの背景色 */
+    padding: 20px; /* パディング */
+    border-radius: 8px; /* 角丸 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 影の設定 */
+}
+
+/* フォームの見出し */
+.form h2 {
+    margin-bottom: 20px; /* 見出しの下のマージン */
+    text-align: center; /* 中央揃え */
+}
+
+/* フォームコントロール */
+.form-control {
+    margin-bottom: 20px; /* コントロール間のマージン */
+}
+
+/* ラベルのスタイル */
+.form-control label {
+    display: block; /* ブロック要素に変更 */
+    margin-bottom: 5px; /* ラベルの下のマージン */
+}
+
+/* 入力フィールドのスタイル */
+.form-control input {
+    width: 100%; /* 幅を100%に設定 */
+    padding: 8px; /* パディング */
+    font-size: 16px; /* フォントサイズ */
+    border: 1px solid #ccc; /* ボーダー */
+    border-radius: 4px; /* 角丸 */
+}
+
+/* フォーカス時のスタイル */
+.form-control input:focus {
+    outline: none; /* フォーカス時のアウトラインを削除 */
+    border-color: #007bff; /* フォーカス時のボーダー色 */
+}
+
+/* ボタンのスタイル */
+button {
+    width: 100%; /* 幅を100%に設定 */
+    padding: 10px; /* パディング */
+    background-color: #007bff; /* 背景色 */
+    color: #fff; /* 文字色 */
+    border: none; /* ボーダーなし */
+    border-radius: 4px; /* 角丸 */
+    font-size: 16px; /* フォントサイズ */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    transition: background-color 0.3s; /* ホバー時のトランジション */
+}
+
+/* ボタンのホバースタイル */
+button:hover {
+    background-color: #0056b3; /* ホバー時の背景色 */
+}
+
+/* 追加情報のスタイル */
+p {
+    margin-top: 15px; /* 上のマージン */
+    text-align: center; /* 中央揃え */
+}
+
+/* リンクのスタイル */
+p a {
+    color: #007bff; /* リンクの色 */
+    text-decoration: none; /* 下線を削除 */
+}
+
+/* リンクのホバースタイル */
+p a:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+}

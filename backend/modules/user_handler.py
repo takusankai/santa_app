@@ -59,7 +59,7 @@ def user_info():
     user = Users.query.filter_by(user_id=current_user.user_id).first()
     return jsonify({'status': 'success', 'user': {'email': user.email, 'user_name': user.user_name}})
 
-# 全ユーザー情報取得処理
+# 全ユーザーのユーザー情報を取得する処理
 @user_handle_app.route('/users_info', methods=['GET'])
 def users_info():
     users = Users.query.all()

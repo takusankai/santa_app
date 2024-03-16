@@ -20,7 +20,8 @@ def create_app():
 
     # セッション管理設定
     login_manager = LoginManager()
-    # login_manager.login_view = '/' # ログイン出来ていない場合はこのURLにリダイレクトされる
+    # ログイン出来ていない場合はこのURLにリダイレクトされる
+    login_manager.login_view = '/no_login'
     login_manager.init_app(app)
 
     @login_manager.user_loader
@@ -44,3 +45,7 @@ def hello(name=None):
     
     # name がなければ、message: Hello, World! を返す
     return jsonify({'message': 'Hello, World!'})
+
+@app.route('/no_login')
+def no_login():
+    return jsonify({'status': 'failed', 'message': 'ログインしていません'})

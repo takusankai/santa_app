@@ -5,6 +5,9 @@ from flask_migrate import Migrate
 from modules.models import Users
 import os
 
+# DBの初期化
+db = SQLAlchemy()
+
 def create_app():
     app = Flask(__name__)
     app.secret_key = 'your-secret-key'
@@ -17,7 +20,6 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
     
     # DB設定
-    db = SQLAlchemy()
     db.init_app(app)
     migrate = Migrate(app, db)
     with app.app_context():

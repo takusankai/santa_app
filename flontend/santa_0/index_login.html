@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ログインページ</title>
+<!-- CSSファイルをリンク -->
+<link rel="stylesheet" type="text/css" href="index_login.css">
+</head>
+<body>
+<div class="container">
+    <!-- ログインフォーム -->
+    <form id="loginForm" class="form">
+        <h2>ログイン</h2>
+        <div class="form-control">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="メールアドレスを入力" required>
+        </div>
+        <div class="form-control">
+            <label for="password">ログインパスワード</label>
+            <input type="password" id="password" placeholder="ログインパスワードを入力" required>
+        </div>
+        <button type="submit">ログイン</button>
+        <!-- 新規登録へのリンク -->
+        <p>新規登録はこちら☞ <a href="index_signup.html">新規登録</a></p>
+    </form>
+</div>
+
+<!-- JavaScriptファイルをリンク -->
+<script src="index_login.js"></script>
+</body>
+</html>

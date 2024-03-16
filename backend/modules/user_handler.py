@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app import db
+from database_settings import db
 from modules.models import Users
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, current_user, login_required
@@ -25,7 +25,7 @@ def signup():
     if password == santa_password:
         return jsonify({'status': 'failed', 'message': 'パスワードとサンタパスワードは異なる必要があります'})
     
-    new_user = Users(email=email, user_name=user_name, password=hashed_password, parents_password=hashed_santa_password)
+    new_user = Users(email=email, user_name=user_name, password=hashed_password, santa_password=hashed_santa_password)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'status': 'success', 'message': 'ユーザー登録が正常に完了しました'})
@@ -47,16 +47,20 @@ def login():
 
 # ログアウト処理
 @user_handle_app.route('/logout', methods=['GET'])
-# @login_required
+@login_required
 def logout():
     logout_user()
     return jsonify({'status': 'success', 'message': 'ログアウトしました'})
 
 # ユーザー情報取得処理
-@user_handle_app.route('/user', methods=['GET'])
-# @login_required
-def user():
-    if current_user.is_authenticated:
-        return jsonify({'status': 'success', 'user': {'email': current_user.email, 'user_name': current_user.user_name}})
-    
-    return jsonify({'status': 'failed', 'message': 'ログインしていません'})
+@user_handle_app.route('/user_info', methods=['GET'])
+@login_required
+def user_info():
+    user = Users.query.filter_by(user_id=current_user.user_id).first()
+    return jsonify({'status': 'success', 'user': {'email': user.email, 'user_name': user.user_name}})
+
+# 全ユーザーのユーザー情報を取得する処理
+@user_handle_app.route('/users_info', methods=['GET'])
+def users_info():
+    users = Users.query.all()
+    return jsonify({'status': 'success', 'users': users})

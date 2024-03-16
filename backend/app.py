@@ -1,8 +1,7 @@
 from flask import Flask, jsonify
 from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from modules.models import Users
+from database_settings import db, init_db
 import os
 
 def create_app():
@@ -15,20 +14,14 @@ def create_app():
     if DATABASE_URL.startswith("postgres://"):
         DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-    
-    # DB設定
-    db = SQLAlchemy()
-    db.init_app(app)
-    migrate = Migrate(app, db)
-    with app.app_context():
-        db.create_all()
-        db.session.commit()
-        db.session.close()
-        print('DB initialized')
+
+    # DB初期化
+    init_db(app)
 
     # セッション管理設定
     login_manager = LoginManager()
-    # login_manager.login_view = '/' # ログイン出来ていない場合はこのURLにリダイレクトされる
+    # ログイン出来ていない場合はこのURLにリダイレクトされる
+    login_manager.login_view = '/no_login'
     login_manager.init_app(app)
 
     @login_manager.user_loader
@@ -52,3 +45,7 @@ def hello(name=None):
     
     # name がなければ、message: Hello, World! を返す
     return jsonify({'message': 'Hello, World!'})
+
+@app.route('/no_login')
+def no_login():
+    return jsonify({'status': 'failed', 'message': 'ログインしていません'})

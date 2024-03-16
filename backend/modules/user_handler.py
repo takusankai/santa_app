@@ -53,14 +53,14 @@ def logout():
     return jsonify({'status': 'success', 'message': 'ログアウトしました'})
 
 # ユーザー情報取得処理
-@user_handle_app.route('/user_info', methods=['GET'])
+@user_handle_app.route('/user', methods=['GET'])
 @login_required
-def user_info():
+def get_user():
     user = Users.query.filter_by(user_id=current_user.user_id).first()
     return jsonify({'status': 'success', 'user': {'email': user.email, 'user_name': user.user_name}})
 
-# 全ユーザーのユーザー情報を取得する処理
-@user_handle_app.route('/users_info', methods=['GET'])
-def users_info():
+# （デバッグ用にログイン関係なく）全ユーザーのユーザー情報を取得する処理
+@user_handle_app.route('/all_users', methods=['GET'])
+def get_all_users():
     users = Users.query.all()
     return jsonify({'status': 'success', 'users': users})

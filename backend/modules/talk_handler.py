@@ -52,7 +52,7 @@ def update_talks():
     db.session.commit()
     return jsonify({'status': 'success', 'message': 'トーク内容を更新しました'})
 
-# 全ユーザーのトーク情報を取得する処理
+# （デバッグ用にログイン関係なく）全ユーザーのトーク情報を取得する処理
 @talk_handle_app.route('/all_talks', methods=['GET'])
 def get_all_talks():
     talks = Talks.query.all()

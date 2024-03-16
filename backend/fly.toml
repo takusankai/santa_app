@@ -10,6 +10,9 @@ primary_region = 'nrt'
   builder = 'paketobuildpacks/builder:base'
   buildpacks = ['paketo-buildpacks/python']
 
+[env]
+  PORT = '8080'
+
 [http_service]
   internal_port = 8080
   force_https = true

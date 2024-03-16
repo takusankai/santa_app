@@ -25,7 +25,7 @@ def signup():
     if password == santa_password:
         return jsonify({'status': 'failed', 'message': 'パスワードとサンタパスワードは異なる必要があります'})
     
-    new_user = Users(email=email, user_name=user_name, password=hashed_password, parents_password=hashed_santa_password)
+    new_user = Users(email=email, user_name=user_name, password=hashed_password, santa_password=hashed_santa_password)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'status': 'success', 'message': 'ユーザー登録が正常に完了しました'})

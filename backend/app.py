@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_login import LoginManager
+from flask_cors import CORS
 from modules.models import Users
 from database_settings import db, init_db
 import os
@@ -7,6 +8,7 @@ import os
 def create_app():
     app = Flask(__name__)
     app.secret_key = 'your-secret-key'
+    CORS(app, supports_credentials=True)
 
     # 環境変数 DATABASE_URL があればそれを使う、なければ sqlite:///sample.db を使う
     print("log確認用、DATABASE_URL:::::", os.getenv('DATABASE_URL', 'sqlite:///sample.db'))
@@ -36,16 +38,16 @@ def create_app():
 
 app = create_app()
 
+@app.route('/no_login')
+def no_login():
+    return jsonify({'status': 'failed', 'message': 'ログインしていません'})
+
 @app.route('/')
 @app.route('/<name>')
 def hello(name=None):
     # name があれば、message: Hello, {name}! を返す
     if name:
-        return jsonify({'message': f'Hello, {name}!'})
+        return jsonify({'status': 'failed', 'message': f'Hello, {name}!'})
     
     # name がなければ、message: Hello, World! を返す
-    return jsonify({'message': 'Hello, World!'})
-
-@app.route('/no_login')
-def no_login():
-    return jsonify({'status': 'failed', 'message': 'ログインしていません'})
+    return jsonify({'status': 'failed', 'message': 'Hello, World!'})

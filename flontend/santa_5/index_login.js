@@ -25,7 +25,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         const signupData = await usersAccess.login(email, password)
 
         if (signupData.status === "success" ) {
-            window.location.href = './kids_chat1.0.html';
+            window.location.href = './kids_chat.html';
         } else {
             console.log(signupData.massage)
         }

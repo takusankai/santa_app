@@ -32,7 +32,7 @@ document.getElementById('signupForm').addEventListener('submit', async function 
             // logが見たいので2秒後に実行しています
             // 完成版ではコメントアウトで止めてください
             setTimeout(function() {
-                window.location.href = './kids_chat1.0.html';
+                window.location.href = './kids_chat.html';
             }, 2000);
         } else {
             console.log(signupData.massage)

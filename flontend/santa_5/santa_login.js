@@ -23,18 +23,18 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     try {
         const santaLoginData = usersAccess.signup()
         if (santaLoginData.status === "success" ) {
-            window.location.href = 'santa_chat1.0.html';
+            window.location.href = './santa_chat.html';
         } else {
             console.log(santaLoginData.massage)
             setTimeout(function() {
-                window.location.href = './kids_chat1.0.html';
+                window.location.href = './santa_chat.html';
             }, 2000);
         }
     }
     catch (e) {
         console.log(e)
         setTimeout(function() {
-            window.location.href = './kids_chat1.0.html';
+            window.location.href = './santa_chat.html';
         }, 2000);
     }    
 });

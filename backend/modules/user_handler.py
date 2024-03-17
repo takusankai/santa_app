@@ -29,7 +29,7 @@ def signup():
     db.session.add(new_user)
     db.session.commit()
 
-    login_user(new_user)
+    login_user(new_user, remember=True)
     return jsonify({'status': 'success', 'message': 'ユーザー登録が正常に完了しました'})
 
 # ログイン処理
@@ -42,7 +42,7 @@ def login():
     # emailとpasswordが一致するユーザーがいるか確認
     user = Users.query.filter_by(email=email).first()
     if user and check_password_hash(user.password, password):
-        login_user(user)
+        login_user(user, remember=True)
         return jsonify({'status': 'success', 'message': 'ログインに成功しました'})
     
     return jsonify({'status': 'failed', 'message': 'ログインに失敗しました'})

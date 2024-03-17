@@ -66,3 +66,16 @@ def get_user():
 def get_all_users():
     users = Users.query.all()
     return jsonify({'status': 'success', 'users': users})
+
+# サンタであることを判定する処理
+@user_handle_app.route('/santa_login', methods=['POST'])
+@login_required
+def santa_login():
+    data = request.json
+    santa_password = data['santa_password']
+
+    user = Users.query.filter_by(user_id=current_user.user_id).first()
+    if user and check_password_hash(user.santa_password, santa_password):
+        return jsonify({'status': 'success', 'message': 'サンタとしてログインしました'})
+    
+    return jsonify({'status': 'failed', 'message': 'サンタとしてログインに失敗しました'})

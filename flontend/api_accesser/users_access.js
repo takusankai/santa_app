@@ -98,13 +98,34 @@ async function getAllUsersInfo() {
     return data
 }
 
+// サンタとしてのログイン処理
+async function santaLogin(santa_password) {
+    const response = await fetch(`${ServerBaseURL}/santa_login`, {
+        method: "POST",
+        credentials: 'include',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "santa_password": santa_password })
+    })
+    // 通信失敗のエラー時に、HTTPステータスコードを投げる
+    if (!response.ok) {
+        throw new Error("HTTP access failed: " + response.status);
+    }
+    // 返答からjsonデータを取得して返す
+    const data = await response.json()
+    console.log("santaLogin data: ", data)
+    return data
+}
+
 // 全ての関数をまとめてexport
 const usersAccess = {
     signup,
     login,
     logout,
     getUserInfo,
-    getAllUsersInfo
+    getAllUsersInfo,
+    santaLogin
 }
 export default usersAccess
 

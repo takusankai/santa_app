@@ -33,7 +33,7 @@ document.getElementById('signupForm').addEventListener('submit', async function 
             // 完成版ではコメントアウトで止めてください
             setTimeout(function() {
                 window.location.href = './kids_chat1.0.html';
-            }, 20000);
+            }, 2000);
         } else {
             console.log(signupData.massage)
         }

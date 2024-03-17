@@ -1,4 +1,4 @@
-ServerURL = "https://santa-app.fly.dev"
+const ServerBaseURL = "https://santa-app.fly.dev"
 
 // ユーザーのトーク履歴を取得する処理
 async function getTalks() {

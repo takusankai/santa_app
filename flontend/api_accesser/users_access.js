@@ -1,13 +1,14 @@
-ServerURL = "https://santa-app.fly.dev"
+const ServerBaseURL = "https://santa-app.fly.dev"
 
 // サインアップ処理
 async function signup(email, name, password, santa_password) {
     const response = await fetch(`${ServerBaseURL}/signup`, {
         method: "POST",
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ "email": email, "name": name, "password": password, "santa_password": santa_password })
+        body: JSON.stringify({ "email": email, "user_name": name, "password": password, "santa_password": santa_password })
     })
     // 通信失敗のエラー時に、HTTPステータスコードを投げる
     if (!response.ok) {
@@ -23,6 +24,7 @@ async function signup(email, name, password, santa_password) {
 async function login(email, password) {
     const response = await fetch(`${ServerBaseURL}/login`, {
         method: "POST",
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         },
@@ -42,6 +44,7 @@ async function login(email, password) {
 async function logout() {
     const response = await fetch(`${ServerBaseURL}/logout`, {
         method: "POST",
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         },
@@ -61,6 +64,7 @@ async function logout() {
 async function getUserInfo() {
     const response = await fetch(`${ServerBaseURL}/user`, {
         method: "GET",
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         }
@@ -79,6 +83,7 @@ async function getUserInfo() {
 async function getAllUsersInfo() {
     const response = await fetch(`${ServerBaseURL}/users`, {
         method: "GET",
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         }

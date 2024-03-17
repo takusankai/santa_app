@@ -28,6 +28,8 @@ def signup():
     new_user = Users(email=email, user_name=user_name, password=hashed_password, santa_password=hashed_santa_password)
     db.session.add(new_user)
     db.session.commit()
+
+    login_user(new_user)
     return jsonify({'status': 'success', 'message': 'ユーザー登録が正常に完了しました'})
 
 # ログイン処理

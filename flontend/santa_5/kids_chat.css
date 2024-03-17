@@ -1,0 +1,116 @@
+body {
+    background-color: #7494C0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+header {
+    background-color: #8DE055;
+    color: #000000;
+    text-align: left;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    /* 他の要素よりも上に表示するための z-index 値 */
+}
+
+header h1 {
+    margin: 0;
+}
+
+
+
+
+#chat-box {
+    width: 600px;
+    /* チャットボックスを広くする */
+    margin: 70px auto 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    height: 450px;
+
+    /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+    -ms-overflow-style: none;
+    /*Firefoxへの対応*/
+    scrollbar-width: none;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.message-sender {
+    font-weight: bold;
+}
+
+.message-you {
+    text-align: right;
+}
+
+.message-recipient {
+    text-align: left;
+}
+
+.message-content {
+    background-color: #f2f2f2;
+    padding: 8px 12px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 70%;
+    /* メッセージの幅を調整 */
+}
+
+
+
+/*Google Chrome、Safariへの対応*/
+.contents_box::-webkit-scrollbar {
+    display: none;
+}
+
+
+#message-input {
+    width: 83%;
+    /* テキストボックスの幅を調整 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;
+    /* チャットボックスとの間隔を調整 */
+
+
+}
+
+#send-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#switch-user-button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+#logout-button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}

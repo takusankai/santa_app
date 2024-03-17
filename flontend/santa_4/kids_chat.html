@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja"> <!-- 言語設定 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サンタチャットアプリ</title> <!-- ページタイトル -->
+    <!-- スタイルシート -->
+    <link rel="stylesheet" type="text/css" href="kids_chat.css">
+</head>
+
+
+
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <h1>
+            サンタチャットアプリ
+            <button id="switch-user-button">ユーザー切り替え</button> <!-- ユーザー切り替えボタン -->
+            <button id="logout-button">ログアウト</button> <!-- ユーザー切り替えボタン -->
+        </h1>
+    </header>
+
+
+    <!-- チャットボックス -->
+    <div id="chat-box">
+        <div id="messages"></div> <!-- メッセージ表示エリア -->
+    </div>
+
+    <!-- メッセージ入力フォーム -->
+    <div>
+        <input type="text" id="message-input" placeholder="メッセージを入力"> <!-- メッセージ入力欄 -->
+        <button id="send-button">送信</button> <!-- 送信ボタン -->
+    </div>
+
+    <!-- JavaScript -->
+    <script src="kids_chat.js"></script>
+
+</body>
+
+</html>

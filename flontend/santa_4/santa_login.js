@@ -1,4 +1,4 @@
-import usersAccess from "../api_accesser/users_access";
+import usersAccess from "../api_accesser/users_access.js";
 
 // ログインボタンの要素を取得
 const loginButton = document.getElementById('santalogin-button');
@@ -22,10 +22,10 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
     try {
         const santaLoginData = usersAccess.signup()
-        if (santaLoginData.status === success) {
+        if (santaLoginData.status === "success" ) {
             window.location.href = 'santa_chat1.0.html';
         } else {
-            console.log(signupData.massage)
+            console.log(santaLoginData.massage)
             setTimeout(function() {
                 window.location.href = './kids_chat1.0.html';
             }, 2000);

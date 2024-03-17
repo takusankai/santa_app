@@ -38,16 +38,16 @@ def create_app():
 
 app = create_app()
 
+@app.route('/no_login')
+def no_login():
+    return jsonify({'status': 'failed', 'message': 'ログインしていません'})
+
 @app.route('/')
 @app.route('/<name>')
 def hello(name=None):
     # name があれば、message: Hello, {name}! を返す
     if name:
-        return jsonify({'message': f'Hello, {name}!'})
+        return jsonify({'status': 'failed', 'message': f'Hello, {name}!'})
     
     # name がなければ、message: Hello, World! を返す
-    return jsonify({'message': 'Hello, World!'})
-
-@app.route('/no_login')
-def no_login():
-    return jsonify({'status': 'failed', 'message': 'ログインしていません'})
+    return jsonify({'status': 'failed', 'message': 'Hello, World!'})

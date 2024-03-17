@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_login import LoginManager
+from flask_cors import CORS
 from modules.models import Users
 from database_settings import db, init_db
 import os
@@ -7,6 +8,7 @@ import os
 def create_app():
     app = Flask(__name__)
     app.secret_key = 'your-secret-key'
+    CORS(app)
 
     # 環境変数 DATABASE_URL があればそれを使う、なければ sqlite:///sample.db を使う
     print("log確認用、DATABASE_URL:::::", os.getenv('DATABASE_URL', 'sqlite:///sample.db'))
